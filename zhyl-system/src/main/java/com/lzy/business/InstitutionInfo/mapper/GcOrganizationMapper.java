@@ -1,7 +1,7 @@
 package com.lzy.business.InstitutionInfo.mapper;
 
 import java.util.List;
-import com.lzy.business.InstitutionInfo.domain.GcOrganization;
+import com.lzy.business.InstitutionInfo.domain.gcOrganization;
 
 /**
  * 养老机构信息Mapper接口
@@ -17,7 +17,7 @@ public interface GcOrganizationMapper
      * @param orgId 养老机构信息主键
      * @return 养老机构信息
      */
-    public GcOrganization selectGcOrganizationByOrgId(Long orgId);
+    public gcOrganization selectGcOrganizationByOrgId(Long orgId);
 
     /**
      * 查询养老机构信息列表
@@ -25,7 +25,7 @@ public interface GcOrganizationMapper
      * @param gcOrganization 养老机构信息
      * @return 养老机构信息集合
      */
-    public List<GcOrganization> selectGcOrganizationList(GcOrganization gcOrganization);
+    public List<gcOrganization> selectGcOrganizationList(gcOrganization gcOrganization);
 
     /**
      * 新增养老机构信息
@@ -33,7 +33,7 @@ public interface GcOrganizationMapper
      * @param gcOrganization 养老机构信息
      * @return 结果
      */
-    public int insertGcOrganization(GcOrganization gcOrganization);
+    public int insertGcOrganization(gcOrganization gcOrganization);
 
     /**
      * 修改养老机构信息
@@ -41,7 +41,7 @@ public interface GcOrganizationMapper
      * @param gcOrganization 养老机构信息
      * @return 结果
      */
-    public int updateGcOrganization(GcOrganization gcOrganization);
+    public int updateGcOrganization(gcOrganization gcOrganization);
 
     /**
      * 删除养老机构信息

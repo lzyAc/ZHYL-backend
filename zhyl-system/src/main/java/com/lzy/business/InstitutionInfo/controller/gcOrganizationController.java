@@ -16,7 +16,7 @@ import com.lzy.common.annotation.Log;
 import com.lzy.common.core.controller.BaseController;
 import com.lzy.common.core.domain.AjaxResult;
 import com.lzy.common.enums.BusinessType;
-import com.lzy.business.InstitutionInfo.domain.GcOrganization;
+import com.lzy.business.InstitutionInfo.domain.gcOrganization;
 import com.lzy.business.InstitutionInfo.service.IGcOrganizationService;
 import com.lzy.common.utils.poi.ExcelUtil;
 import com.lzy.common.core.page.TableDataInfo;
@@ -29,7 +29,7 @@ import com.lzy.common.core.page.TableDataInfo;
  */
 @RestController
 @RequestMapping("/InstitutionInfo/organization")
-public class GcOrganizationController extends BaseController
+public class gcOrganizationController extends BaseController
 {
     @Autowired
     private IGcOrganizationService gcOrganizationService;
@@ -39,10 +39,10 @@ public class GcOrganizationController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('InstitutionInfo:organization:list')")
     @GetMapping("/list")
-    public TableDataInfo list(GcOrganization gcOrganization)
+    public TableDataInfo list(gcOrganization gcOrganization)
     {
         startPage();
-        List<GcOrganization> list = gcOrganizationService.selectGcOrganizationList(gcOrganization);
+        List<com.lzy.business.InstitutionInfo.domain.gcOrganization> list = gcOrganizationService.selectGcOrganizationList(gcOrganization);
         return getDataTable(list);
     }
 
@@ -52,10 +52,10 @@ public class GcOrganizationController extends BaseController
     @PreAuthorize("@ss.hasPermi('InstitutionInfo:organization:export')")
     @Log(title = "养老机构信息", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, GcOrganization gcOrganization)
+    public void export(HttpServletResponse response, gcOrganization gcOrganization)
     {
-        List<GcOrganization> list = gcOrganizationService.selectGcOrganizationList(gcOrganization);
-        ExcelUtil<GcOrganization> util = new ExcelUtil<GcOrganization>(GcOrganization.class);
+        List<com.lzy.business.InstitutionInfo.domain.gcOrganization> list = gcOrganizationService.selectGcOrganizationList(gcOrganization);
+        ExcelUtil<com.lzy.business.InstitutionInfo.domain.gcOrganization> util = new ExcelUtil<com.lzy.business.InstitutionInfo.domain.gcOrganization>(com.lzy.business.InstitutionInfo.domain.gcOrganization.class);
         util.exportExcel(response, list, "养老机构信息数据");
     }
 
@@ -75,7 +75,7 @@ public class GcOrganizationController extends BaseController
     @PreAuthorize("@ss.hasPermi('InstitutionInfo:organization:add')")
     @Log(title = "养老机构信息", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody GcOrganization gcOrganization)
+    public AjaxResult add(@RequestBody gcOrganization gcOrganization)
     {
         return toAjax(gcOrganizationService.insertGcOrganization(gcOrganization));
     }
@@ -86,7 +86,7 @@ public class GcOrganizationController extends BaseController
     @PreAuthorize("@ss.hasPermi('InstitutionInfo:organization:edit')")
     @Log(title = "养老机构信息", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody GcOrganization gcOrganization)
+    public AjaxResult edit(@RequestBody gcOrganization gcOrganization)
     {
         return toAjax(gcOrganizationService.updateGcOrganization(gcOrganization));
     }

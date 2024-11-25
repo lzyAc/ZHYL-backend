@@ -13,7 +13,7 @@ import com.lzy.common.annotation.Excel;
  * @author lzy
  * @date 2024-11-20
  */
-public class GcOrganization extends BaseEntity
+public class gcOrganization extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 

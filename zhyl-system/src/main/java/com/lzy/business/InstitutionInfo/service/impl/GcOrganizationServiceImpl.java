@@ -6,7 +6,7 @@ import com.lzy.business.InstitutionInfo.service.IGcOrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.lzy.business.InstitutionInfo.mapper.GcOrganizationMapper;
-import com.lzy.business.InstitutionInfo.domain.GcOrganization;
+import com.lzy.business.InstitutionInfo.domain.gcOrganization;
 
 /**
  * 养老机构信息Service业务层处理
@@ -27,7 +27,7 @@ public class GcOrganizationServiceImpl implements IGcOrganizationService
      * @return 养老机构信息
      */
     @Override
-    public GcOrganization selectGcOrganizationByOrgId(Long orgId)
+    public gcOrganization selectGcOrganizationByOrgId(Long orgId)
     {
         return gcOrganizationMapper.selectGcOrganizationByOrgId(orgId);
     }
@@ -39,7 +39,7 @@ public class GcOrganizationServiceImpl implements IGcOrganizationService
      * @return 养老机构信息
      */
     @Override
-    public List<GcOrganization> selectGcOrganizationList(GcOrganization gcOrganization)
+    public List<gcOrganization> selectGcOrganizationList(gcOrganization gcOrganization)
     {
         return gcOrganizationMapper.selectGcOrganizationList(gcOrganization);
     }
@@ -51,7 +51,7 @@ public class GcOrganizationServiceImpl implements IGcOrganizationService
      * @return 结果
      */
     @Override
-    public int insertGcOrganization(GcOrganization gcOrganization)
+    public int insertGcOrganization(gcOrganization gcOrganization)
     {
         return gcOrganizationMapper.insertGcOrganization(gcOrganization);
     }
@@ -63,7 +63,7 @@ public class GcOrganizationServiceImpl implements IGcOrganizationService
      * @return 结果
      */
     @Override
-    public int updateGcOrganization(GcOrganization gcOrganization)
+    public int updateGcOrganization(gcOrganization gcOrganization)
     {
         return gcOrganizationMapper.updateGcOrganization(gcOrganization);
     }

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzy.business.InstitutionInfo.mapper.gcServiceStaffMapper">
+    
+    <resultMap type="gcServiceStaff" id="gcServiceStaffResult">
+        <result property="id"    column="id"    />
+        <result property="staffName"    column="staff_name"    />
+        <result property="gender"    column="gender"    />
+        <result property="phoneNumber"    column="phone_number"    />
+        <result property="email"    column="email"    />
+        <result property="orgId"    column="org_id"    />
+        <result property="position"    column="position"    />
+        <result property="hireDate"    column="hire_date"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+
+    <resultMap id="gcServiceStaffGcOrganizationResult" type="gcServiceStaff" extends="gcServiceStaffResult">
+        <collection property="gcOrganizationList" ofType="GcOrganization" column="id" select="selectGcOrganizationList" />
+    </resultMap>
+
+    <resultMap type="GcOrganization" id="GcOrganizationResult">
+        <result property="orgId"    column="org_id"    />
+        <result property="orgName"    column="org_name"    />
+        <result property="orgAddress"    column="org_address"    />
+        <result property="description"    column="description"    />
+        <result property="orgImage"    column="org_image"    />
+        <result property="contactPhone"    column="contact_phone"    />
+        <result property="contactEmail"    column="contact_email"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+    </resultMap>
+
+    <sql id="selectgcServiceStaffVo">
+        select id, staff_name, gender, phone_number, email, org_id, position, hire_date, status, create_time, update_time, created_by, updated_by from gc_service_staff
+    </sql>
+
+    <select id="selectgcServiceStaffList" parameterType="gcServiceStaff" resultMap="gcServiceStaffResult">
+        <include refid="selectgcServiceStaffVo"/>
+        <where>  
+            <if test="staffName != null  and staffName != ''"> and staff_name like concat('%', #{staffName}, '%')</if>
+            <if test="gender != null  and gender != ''"> and gender = #{gender}</if>
+            <if test="phoneNumber != null  and phoneNumber != ''"> and phone_number = #{phoneNumber}</if>
+            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="orgId != null "> and org_id = #{orgId}</if>
+            <if test="position != null  and position != ''"> and position = #{position}</if>
+            <if test="hireDate != null "> and hire_date = #{hireDate}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="createdBy != null "> and created_by = #{createdBy}</if>
+            <if test="updatedBy != null "> and updated_by = #{updatedBy}</if>
+        </where>
+    </select>
+    
+    <select id="selectgcServiceStaffById" parameterType="Long" resultMap="gcServiceStaffGcOrganizationResult">
+        select id, staff_name, gender, phone_number, email, org_id, position, hire_date, status, create_time, update_time, created_by, updated_by
+        from gc_service_staff
+        where id = #{id}
+    </select>
+
+    <select id="selectGcOrganizationList" resultMap="GcOrganizationResult">
+        select org_id, org_name, org_address, description, org_image, contact_phone, contact_email, created_by, created_time, updated_by, updated_time
+        from gc_organization
+        where org_id = #{org_id}
+    </select>
+
+    <insert id="insertgcServiceStaff" parameterType="gcServiceStaff" useGeneratedKeys="true" keyProperty="id">
+        insert into gc_service_staff
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="staffName != null and staffName != ''">staff_name,</if>
+            <if test="gender != null and gender != ''">gender,</if>
+            <if test="phoneNumber != null and phoneNumber != ''">phone_number,</if>
+            <if test="email != null and email != ''">email,</if>
+            <if test="orgId != null">org_id,</if>
+            <if test="position != null">position,</if>
+            <if test="hireDate != null">hire_date,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createdBy != null">created_by,</if>
+            <if test="updatedBy != null">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="staffName != null and staffName != ''">#{staffName},</if>
+            <if test="gender != null and gender != ''">#{gender},</if>
+            <if test="phoneNumber != null and phoneNumber != ''">#{phoneNumber},</if>
+            <if test="email != null and email != ''">#{email},</if>
+            <if test="orgId != null">#{orgId},</if>
+            <if test="position != null">#{position},</if>
+            <if test="hireDate != null">#{hireDate},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updategcServiceStaff" parameterType="gcServiceStaff">
+        update gc_service_staff
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="staffName != null and staffName != ''">staff_name = #{staffName},</if>
+            <if test="gender != null and gender != ''">gender = #{gender},</if>
+            <if test="phoneNumber != null and phoneNumber != ''">phone_number = #{phoneNumber},</if>
+            <if test="email != null and email != ''">email = #{email},</if>
+            <if test="orgId != null">org_id = #{orgId},</if>
+            <if test="position != null">position = #{position},</if>
+            <if test="hireDate != null">hire_date = #{hireDate},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createdBy != null">created_by = #{createdBy},</if>
+            <if test="updatedBy != null">updated_by = #{updatedBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletegcServiceStaffById" parameterType="Long">
+        delete from gc_service_staff where id = #{id}
+    </delete>
+
+    <delete id="deletegcServiceStaffByIds" parameterType="String">
+        delete from gc_service_staff where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+    <delete id="deleteGcOrganizationByOrgIds" parameterType="String">
+        delete from gc_organization where org_id in 
+        <foreach item="orgId" collection="array" open="(" separator="," close=")">
+            #{orgId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteGcOrganizationByOrgId" parameterType="Long">
+        delete from gc_organization where org_id = #{orgId}
+    </delete>
+
+    <insert id="batchGcOrganization">
+        insert into gc_organization( org_id, org_name, org_address, description, org_image, contact_phone, contact_email, created_by, created_time, updated_by, updated_time) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            ( #{item.orgId}, #{item.orgName}, #{item.orgAddress}, #{item.description}, #{item.orgImage}, #{item.contactPhone}, #{item.contactEmail}, #{item.createdBy}, #{item.createdTime}, #{item.updatedBy}, #{item.updatedTime})
+        </foreach>
+    </insert>
+</mapper>
