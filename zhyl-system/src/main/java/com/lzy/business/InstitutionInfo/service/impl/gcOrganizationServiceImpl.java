@@ -2,10 +2,9 @@ package com.lzy.business.InstitutionInfo.service.impl;
 
 import java.util.List;
 
-import com.lzy.business.InstitutionInfo.service.IGcOrganizationService;
+import com.lzy.business.InstitutionInfo.service.IgcOrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.lzy.business.InstitutionInfo.mapper.GcOrganizationMapper;
 import com.lzy.business.InstitutionInfo.domain.gcOrganization;
 
 /**
@@ -15,10 +14,10 @@ import com.lzy.business.InstitutionInfo.domain.gcOrganization;
  * @date 2024-11-20
  */
 @Service
-public class GcOrganizationServiceImpl implements IGcOrganizationService
+public class gcOrganizationServiceImpl implements IgcOrganizationService
 {
     @Autowired
-    private GcOrganizationMapper gcOrganizationMapper;
+    private com.lzy.business.InstitutionInfo.mapper.gcOrganizationMapper gcOrganizationMapper;
 
     /**
      * 查询养老机构信息

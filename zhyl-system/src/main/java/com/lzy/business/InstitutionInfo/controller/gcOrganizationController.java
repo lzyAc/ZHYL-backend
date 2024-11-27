@@ -17,7 +17,7 @@ import com.lzy.common.core.controller.BaseController;
 import com.lzy.common.core.domain.AjaxResult;
 import com.lzy.common.enums.BusinessType;
 import com.lzy.business.InstitutionInfo.domain.gcOrganization;
-import com.lzy.business.InstitutionInfo.service.IGcOrganizationService;
+import com.lzy.business.InstitutionInfo.service.IgcOrganizationService;
 import com.lzy.common.utils.poi.ExcelUtil;
 import com.lzy.common.core.page.TableDataInfo;
 
@@ -32,7 +32,7 @@ import com.lzy.common.core.page.TableDataInfo;
 public class gcOrganizationController extends BaseController
 {
     @Autowired
-    private IGcOrganizationService gcOrganizationService;
+    private IgcOrganizationService gcOrganizationService;
 
     /**
      * 查询养老机构信息列表
